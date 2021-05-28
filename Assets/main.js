@@ -8,6 +8,10 @@ $(document).ready(function (){
         //setInterval function to update every second so the today function keeps updating
         setInterval(today, 1000);
 
+
+        renderCityList();
+        console.log(renderCityList)
+
     // obtain current weather upon city search, setting up local storage
      $(".myClass").on('click', function (event){
         event.preventDefault();
@@ -77,6 +81,19 @@ $(document).ready(function (){
         };
 
     }
+
+// render city list
+    function renderCityList () {
+        let cityList = JSON.parse(localStorage.getItem("city"));
+
+        $("#city-list").textContent = cityList;
+
+    }
+
+
+
+
+
 
 
 

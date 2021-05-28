@@ -30,6 +30,7 @@ $(document).ready(function (){
                 }  
             })
             localStorage.setItem("city", JSON.stringify(city));
+            renderCityList();
             fiveDayForecast (city);
         }else {
             $('#error').html (alert('Field cannot be empty'))
@@ -62,7 +63,7 @@ $(document).ready(function (){
                 for (i=0; i<data.list.length; i++) {
                     
                     if(data.list[i].dt_txt.indexOf("15:00:00")>0){
-                        var weatherData= data.list[i]
+                        let weatherData= data.list[i]
                         console.log(weatherData)
                         let widgetFiveDay = showForecastData(weatherData);
 
@@ -83,14 +84,14 @@ $(document).ready(function (){
     }
 
 // render city list
+    
     function renderCityList () {
-        let cityList = JSON.parse(localStorage.getItem("city"));
-
-        $("#city-list").textContent = cityList;
-
+        $("#cityList").html("");
+        let cityList= JSON.parse(localStorage.getItem("city"));
+        
+        return "<div>" + cityList + "</div>";
     }
-
-
+    $("#cityList").append(cityList)
 
 
 

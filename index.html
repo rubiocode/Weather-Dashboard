@@ -45,17 +45,13 @@
                 </form>
                 <br>
 <!--List of previously searched cities-->
-                <h6>Previously Searched Cities</h6>
-                <table data-link="row" id="city-list">
-                    <tr><td><a id = "city0" href="#" class="inpValue"></a></td></tr>
-                    <tr><td><a id = "city1" href="#" class="inpValue"></a></td></tr>
-                    <tr><td><a id = "city2" href="#" class="inpValue"></a></td></tr>
-                    <tr><td><a id = "city3" href="#" class="inpValue"></a></td></tr>
-                    <tr><td><a id = "city4" href="#" class="inpValue"></a></td></tr>
-                    <tr><td><a id = "city5" href="#" class="inpValue"></a></td></tr>
-                    <tr><td><a id = "city6" href="#" class="inpValue"></a></td></tr>
-                    <tr><td><a id = "city7" href="#" class="inpValue"></a></td></tr>
-                </table>
+                <div class="container-fluid" id="previouslySearched">
+                    <h6>Previously Searched Cities</h6>
+                    <div class="card-list" id="citySearchedList">
+                        <div class="day-card" id="cityList"></div>
+                    </div>
+                </div>
+                
             </div>
 <!--Weather section-->
             <div class='col-lg-8 px-2 py-2 border'>

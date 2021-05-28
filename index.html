@@ -1,28 +1,82 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link
-    rel="stylesheet"
-    href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-  />
-  <link
-    rel="stylesheet"
-    href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
-    integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf"
-    crossorigin="anonymous"
-  />
-  <link
-    href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap"
-    rel="stylesheet"
-  />
-  <link rel="stylesheet" href="./assets/reset.css" />
-  <link rel="stylesheet" href="./assets/style.css" />
-    <title>Weather Dashboard</title>
-</head>
-<body>
-    
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Weather Dashboard</title>
+        <link rel="icon" href="./Assets/img/favicon.png"/>
+        <link 
+            rel="stylesheet" 
+            href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"/>
+        <link
+            rel="stylesheet"
+            href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+            integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf"
+            crossorigin="anonymous"/>
+        <link
+            href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap"
+            rel="stylesheet"/>
+        <link rel="stylesheet" href="./Assets/reset.css" />
+        <link rel="stylesheet" href="./Assets/style.css" />
+    </head>
+<body id="background">
+<!--main header-->
+    <div class="jumbotron text-dark" id="jumbotron">
+        <h1 class="text-center" id="header"> Weather Dashboard</h1>
+        
+    </div>
+<!--Search Bar-side left-->
+    <div class='container-fluid'>
+        <div class='row border'> 
+            <div class='col-lg-4 bg-light border'  id="searchedCity">
+            <br>
+                <h4> Search for a City : </h4>
+                <br>
+                <form role="form">
+                    <div class="form-group">
+                        <input id="search" type="text">
+                        <button id='searchButton' type="submit" class="btn btn-dark myClass">
+                            <i class="fa fa-search"></i>  
+                        </button>
+                        <br>
+                        <em id="error"></em>
+                    </div>                        
+                </form>
+                <br>
+<!--List of previously searched cities-->
+                <h6>Previously Searched Cities</h6>
+                <table data-link="row" id="city-list">
+                    <tr><td><a id = "city0" href="#" class="inpValue"></a></td></tr>
+                    <tr><td><a id = "city1" href="#" class="inpValue"></a></td></tr>
+                    <tr><td><a id = "city2" href="#" class="inpValue"></a></td></tr>
+                    <tr><td><a id = "city3" href="#" class="inpValue"></a></td></tr>
+                    <tr><td><a id = "city4" href="#" class="inpValue"></a></td></tr>
+                    <tr><td><a id = "city5" href="#" class="inpValue"></a></td></tr>
+                    <tr><td><a id = "city6" href="#" class="inpValue"></a></td></tr>
+                    <tr><td><a id = "city7" href="#" class="inpValue"></a></td></tr>
+                </table>
+            </div>
+<!--Weather section-->
+            <div class='col-lg-8 px-2 py-2 border'>
+                <p class="text-center" id="weather">Today's Weather Summary</p>
+                <h3 id="currentDay" class="text-center"></h3>
+                <div class="container border p-6" id="showResults"></div>
+            </div>
+<!--5-Day forecast section-->
+            <div class="container-fluid" id="five-day">
+                <h2 id="five-day-title"> 5-Day Forecast </h2>
+                <div class="card-list" id="cardList">
+                    <div class="day-card" id="showFiveDayForecast"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+    <script src="./Assets/main.js"></script>
 </body>
 </html>

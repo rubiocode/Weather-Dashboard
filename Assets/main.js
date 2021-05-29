@@ -50,7 +50,7 @@ $(document).ready(function (){
                 }  
             })
             localStorage.setItem("cities", JSON.stringify(cities));
-            $(".city-list").prepend("<button class='btn btn-light prev-city'>"+ cities+ "</button>")
+            $(".city-list").prepend("<button class='btn btn-light prev-city'>"+ cities[j] + "</button>")
             fiveDayForecast (city);
         }else{
             $('#error').html (alert('Field cannot be empty'))
@@ -92,10 +92,23 @@ $(document).ready(function (){
                 
             }  
     })
+     
+    function timeConverter(UNIX_timestamp){
+        var a = new Date(UNIX_timestamp * 1000);
+        var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+        var days= ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
+        var day= days [a.getDay()];
+        var year = a.getFullYear();
+        var month = months[a.getMonth()];
+        var date = a.getDate();
+        var time = day + ' ' + date + ' ' + month + ' ' + year;
+        return time;
+      }
+      console.log(timeConverter(1622300400));
 
     function showForecastData (data){
         
-        return  "<div> <h3 class='dateFive'></h3>" +
+        return  "<div> <h3 class='dateFive'>" + timeConverter(1622300400) +"</h3>" +
                 "<h3><img src=http://openweathermap.org/img/wn/"+ data.weather[0].icon+".png id='img2'> "+ data.weather[0].description  +"</h3>" + 
                 "<h3><strong>Weather</strong>: "+ data.weather[0].main  +"</h3>" +
                 "<h3><strong>Temperature</strong>: "+ Math.floor(data.main.temp)  +"&deg;F</h3>" +

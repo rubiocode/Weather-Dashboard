@@ -35,7 +35,7 @@
                 <br>
                 <form role="form">
                     <div class="form-group">
-                        <input id="search" type="text">
+                        <input id="search" type="text" class="inpSearch">
                         <button id='searchButton' type="submit" class="btn btn-dark myClass">
                             <i class="fa fa-search"></i>  
                         </button>
@@ -47,13 +47,16 @@
 <!--List of previously searched cities-->
                 <div class="container-fluid" id="previouslySearched">
                     <h6>Previously Searched Cities</h6>
-                    <div class="card-list" id="citySearchedList">
-                        <div class="day-card" id="cityList">
-                            <ul id="city-list"></ul>
+                    <div class="card" id="citySearchedList">
+                        <div class="card-list" id="cityList">
+                            <ul class="city-list"></ul>
+                            
                         </div>
                     </div>
+                    <div>
+                        <button class="btn btn-dark mt-1 remove" type="button">Clear search</button>
+                    </div>
                 </div>
-                
             </div>
 <!--Weather section-->
             <div class='col-lg-8 px-2 py-2 border'>

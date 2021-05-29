@@ -13,10 +13,13 @@ $(document).ready(function (){
         console.log(renderCityList)
 
     // obtain current weather upon city search, setting up local storage
+    let cityInput= document.querySelector('#city-list');
+   let cities= [];
      $(".myClass").on('click', function (event){
         event.preventDefault();
 
         let city= $("#search").val().trim();
+        cities = city.split("")
         if (city != ''){
             $.ajax({
                 url: `http://api.openweathermap.org/data/2.5/weather?q=${city}&units=imperial&APPID=50f9be4cd5ddca3502184f3307bce83e`,
@@ -29,7 +32,7 @@ $(document).ready(function (){
                     $("#search").val('')
                 }  
             })
-            localStorage.setItem("city", JSON.stringify(city));
+            localStorage.setItem("cities", JSON.stringify(cities));
             renderCityList();
             fiveDayForecast (city);
         }else {
@@ -86,17 +89,32 @@ $(document).ready(function (){
 // render city list
     
     function renderCityList () {
-        $("#cityList").html("");
-        let cityList= JSON.parse(localStorage.getItem("city"));
-        
-        return "<div>" + cityList + "</div>";
+        cityInput.innerHTML="";
+            for (i=0; i < cities.length; i++){
+                let city = cities[i];
+
+                let li= document.createElement("li");
+
+                li.textContent= city;
+                li.setAttribute("data-index", i);
+
+                let button = document.createElement("button");
+                button.textContent= "Remove";
+
+                li.appendChild(button);
+                cityInput.appendChild(li);
+            }
+        }
+
+    function init (){
+        let cityList= JSON.parse(localStorage.getItem("cities"));
+
+        if (cityList !== null) {
+            cities = cityList;
+        }
+        renderCityList();
     }
-    $("#cityList").append(cityList)
-
-
-
-
-
+    init();
 
 })
 

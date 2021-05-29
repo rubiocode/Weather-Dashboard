@@ -50,7 +50,7 @@ $(document).ready(function (){
                 }  
             })
             localStorage.setItem("cities", JSON.stringify(cities));
-            $(".city-list").prepend("<button class='btn btn-light prev-city'>"+ cities[j] + "</button>")
+            $(".city-list").prepend("<button class='btn btn-light prev-city'>"+ cities + "</button>")
             fiveDayForecast (city);
         }else{
             $('#error').html (alert('Field cannot be empty'))
@@ -92,7 +92,7 @@ $(document).ready(function (){
                 
             }  
     })
-     
+
     function timeConverter(UNIX_timestamp){
         var a = new Date(UNIX_timestamp * 1000);
         var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
@@ -103,8 +103,9 @@ $(document).ready(function (){
         var date = a.getDate();
         var time = day + ' ' + date + ' ' + month + ' ' + year;
         return time;
-      }
-      console.log(timeConverter(1622300400));
+    }
+    console.log(timeConverter(1622300400));
+
 
     function showForecastData (data){
         

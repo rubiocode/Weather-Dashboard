@@ -85,5 +85,9 @@
 
   .prev-city{
       display: block;
-      
+
+  }
+
+  .myContainer {
+      margin: 2rem;
   }

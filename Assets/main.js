@@ -47,7 +47,6 @@ $(document).ready(function (){
                     const lon = data.coord.lon;
                     const lat = data.coord.lat;
                     var uvIndexValue = uvIndexFunction(lat, lon);
-                    console.log(uvIndexValue);
                     $(".showUvResults").html(uvIndexValue)
                     $("#showResults").html(widget);
                     $("#search").val('')
@@ -113,8 +112,8 @@ $(document).ready(function (){
                 "<h3><strong>Min. Temp</strong>: "+ Math.floor(data.main.temp_min)  +"&deg;F</h3>" +
                 "<h3><strong>Max. Temp</strong>: "+ Math.floor(data.main.temp_max)  +"&deg;F</h3>" +
                 "<h3><strong>Wind Speed</strong>: "+ Math.floor(data.wind.speed)  +" MPH" +"</h3>" +
-                "<h3><strong>Humidity</strong>: "+ data.main.humidity+"%" +"</h3>" + "</div>" + 
-                "<h3><strong>UV Index</strong>: "+ data.current+"%" +"</h3>" + "</div>";
+                "<h3><strong>Humidity</strong>: "+ data.main.humidity+"%" +"</h3>" + 
+                "<h3 id='showUvResults'><strong>UV Index</strong>: </h3>" + "</div>";
                 
     }
 
@@ -131,19 +130,19 @@ $(document).ready(function (){
                 
                 for (i=0; i<data.list.length; i++) {
                     
-                    if(data.list[i++].dt_txt.indexOf("15:00:00")>1){
-                        for (i=1; i<data.list.length; i+=8) {
+                    if(data.list[i].dt_txt.indexOf("15:00:00")>1){
+                        for (j=1; j<data.list.length; j+=8) {
 
-                            let weatherData= data.list[i]
+                            let weatherData= data.list[j]
                             let widgetFiveDay = showForecastData(weatherData);
-                            console.log(data.list[i]) //is each day's data for five day forcast.
+                            console.log(data.list[j]) //is each day's data for five day forcast.
                         
-                            console.log(data.list[i].dt_txt) //should be each of their date-strings.
+                            console.log(data.list[j].dt_txt) //should be each of their date-strings.
                             $("#showFiveDayForecast").append(widgetFiveDay);
                             
                         }
 
-                        
+                        console.log(fiveDayForecast(city));
                     }
                 }
                 
@@ -163,7 +162,7 @@ $(document).ready(function (){
                 "<h3><strong>Wind Speed</strong>: "+ Math.floor(data.wind.speed)  +" MPH" +"</h3>" +
                 "<h3><strong>Humidity</strong>: "+ data.main.humidity+"%" +"</h3>"+ "</div>";
         };
-
+        //console.log()
     }
     
 $(document).on("click",".prev-city", function(){

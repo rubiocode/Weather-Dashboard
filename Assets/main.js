@@ -80,53 +80,57 @@ $(document).ready(function (){
             success: function getForecast(data){
                 $("#showFiveDayForecast").html("");
                 console.log(data)
+                
                 for (i=0; i<data.list.length; i++) {
                     
                     if(data.list[i].dt_txt.indexOf("15:00:00")>0){
-                        let weatherData= data.list[i]
-                        let widgetFiveDay = showForecastData(weatherData);
+                        for (i=0; i<data.list.length; i+=8) {
 
-                        $("#showFiveDayForecast").append(widgetFiveDay);
+                            let weatherData= data.list[i]
+                            let fiveDay = weatherData.dt_txt
+                            let widgetFiveDay = showForecastData(fiveDay);
+                            
+                            console.log(data.list[i])
+                        
+                            console.log(data.list[i].dt_txt) 
+                            $("#showFiveDayForecast").append(widgetFiveDay);
+                        }
+
+                        function showForecastData (data){
+        
+                            return  "<div> <h3 class='dateFive'>" + data.list[0].dt_txt + "</h3>" +
+                                    "<h3><img src=http://openweathermap.org/img/wn/"+ data.weather[0].icon+".png id='img2'> "+ data.weather[0].description  +"</h3>" + 
+                                    "<h3><strong>Weather</strong>: "+ data.weather[0].main  +"</h3>" +
+                                    "<h3><strong>Temperature</strong>: "+ Math.floor(data.main.temp)  +"&deg;F</h3>" +
+                                    "<h3><strong>Wind Speed</strong>: "+ Math.floor(data.wind.speed)  +" MPH" +"</h3>" +
+                                    "<h3><strong>Humidity</strong>: "+ data.main.humidity+"%" +"</h3>"+ "</div>";
+                            };
+                    
+                        }
                     }
                 }
                 
             }  
+
+        )}
+
+        $(document).on("click",".prev-city", function(){
+            let city = $(this).text();
+            $(".inpSearch").val(city);
+            $("#searchButton").click();
+            $(this).remove();
+        
+        
+        });
     })
 
 
 
 
-    Date.prototype.addDays = function(days) {
-        var date = new Date(this.valueOf());
-        date.setDate(date.getDate(today) + days);
-        return date;
-    }
     
-    var date = new Date();
+
     
-    console.log(date.addDays(i+));
-
-    function showForecastData (data){
-        
-        return  "<div> <h3 class='dateFive'>" + date.addDays(i++) + "</h3>" +
-                "<h3><img src=http://openweathermap.org/img/wn/"+ data.weather[0].icon+".png id='img2'> "+ data.weather[0].description  +"</h3>" + 
-                "<h3><strong>Weather</strong>: "+ data.weather[0].main  +"</h3>" +
-                "<h3><strong>Temperature</strong>: "+ Math.floor(data.main.temp)  +"&deg;F</h3>" +
-                "<h3><strong>Wind Speed</strong>: "+ Math.floor(data.wind.speed)  +" MPH" +"</h3>" +
-                "<h3><strong>Humidity</strong>: "+ data.main.humidity+"%" +"</h3>"+ "</div>";
-        };
-
-    }
     
-$(document).on("click",".prev-city", function(){
-    let city = $(this).text();
-    $(".inpSearch").val(city);
-    $("#searchButton").click();
-    $(this).remove();
-
-
-});
 
 
 
-})

@@ -83,8 +83,8 @@ $(document).ready(function (){
                 
                 for (i=0; i<data.list.length; i++) {
                     
-                    if(data.list[i].dt_txt.indexOf("15:00:00")>0){
-                        for (i=0; i<data.list.length; i+=8) {
+                    if(data.list[i++].dt_txt.indexOf("15:00:00")>1){
+                        for (i=1; i<data.list.length; i+=8) {
 
                             let weatherData= data.list[i]
                             let widgetFiveDay = showForecastData(weatherData);
@@ -104,12 +104,11 @@ $(document).ready(function (){
 
 
 
-
     
 
     function showForecastData (data){
         
-        return  "<div class='fiveDayFinal'> <h3 class='dateFive'>" + data.dt_text + "</h3>" +
+        return  "<div class='fiveDayFinal'> <h3 class='dateFive'>" + moment(data.dt_txt).add(1, 'day').format("LL")+ "</h3>" +
                 "<h3><img src=http://openweathermap.org/img/wn/"+ data.weather[0].icon+".png id='img2'> "+ data.weather[0].description  +"</h3>" + 
                 "<h3><strong>Weather</strong>: "+ data.weather[0].main  +"</h3>" +
                 "<h3><strong>Temperature</strong>: "+ Math.floor(data.main.temp)  +"&deg;F</h3>" +

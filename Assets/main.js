@@ -80,16 +80,16 @@ $(document).ready(function (){
             // UV index color coordinated warning and written level of concern
             if (uvIndex > 0.01 & uvIndex < 3) {
                 //color turn green 
-                $uvIndex.addClass('success-color').text(`UV Index: Low Danger  + ${uvIndex}`);
+                $uvIndex.addClass('success-color').css("background-color", "green").text(`UV Index: Low Danger  + ${uvIndex}`);
             } else if (uvIndex > 3 & uvIndex < 6) {
                 // color turns yellow 
-                $uvIndex.addClass('yellow accent-1').text(`UV Index: Moderate to High Danger  ${uvIndex}`);
+                $uvIndex.addClass('yellow accent-1').css("background-color", "yellow").text(`UV Index: Moderate to High Danger  ${uvIndex}`);
             } else if (uvIndex > 6 & uvIndex < 8) {
                 // color turns orange 
-                $uvIndex.addClass('warning-color').text(`UV Index: Moderate to High Danger  ${uvIndex}`);
+                $uvIndex.addClass('warning-color').css("background-color", "red").text(`UV Index: Moderate to High Danger  ${uvIndex}`);
             } else if (uvIndex > 8 & uvIndex < 11) {
                 // color turns red 
-                $uvIndex.addClass('danger-color').text(`UV Index: Very High to Extreme Danger  ${uvIndex}`);
+                $uvIndex.addClass('danger-color').css("color", "red").text(`UV Index: Very High to Extreme Danger  ${uvIndex}`);
             } else if (uvIndex > 11) {
                 // color turns purple 
                 $uvIndex.addClass('secondary-color').text(`UV Index: Very High to Extreme Danger  ${uvIndex}`);
@@ -128,9 +128,9 @@ $(document).ready(function (){
                 $("#showFiveDayForecast").html("");
                 console.log(data)
                 
-                for (i=0; i<data.list.length; i++) {
+                for (i=0; i < data.list[i].dt_txt.indexOf("15:00:00")>1; i++) {
                     
-                    if(data.list[i].dt_txt.indexOf("15:00:00")>1){
+                    
                         for (j=1; j<data.list.length; j+=8) {
 
                             let weatherData= data.list[j]
@@ -144,7 +144,7 @@ $(document).ready(function (){
 
                         console.log(fiveDayForecast(city));
                     }
-                }
+                
                 
             }  
     })

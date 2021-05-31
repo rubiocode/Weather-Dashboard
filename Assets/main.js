@@ -1,6 +1,6 @@
 $(document).ready(function (){
     // getting prev search history from local storage upon page loading
-
+    
     function cityAllStorage (){
         let cities = [];
         keys = Object.keys(localStorage);
@@ -58,6 +58,52 @@ $(document).ready(function (){
 
         
     });
+
+    const lon = response.coord.lon;
+    const lat = response.coord.lat;
+    var uvIndexValue = uvIndexFunction(lat, lon);
+    console.log(uvIndexValue);
+    // UV index - states severity of the UV Index by color warning
+
+    function uvIndexFunction(lat, lon) {
+        // event.preventDefault()
+        var queryURLData = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&exlclude={part}&APPID=50f9be4cd5ddca3502184f3307bce83e`
+        $.ajax({
+            url: queryURLData,
+            method: "GET"
+        }).then(function (data) {
+            let uvIndex = data.current.uvi;
+            // console.log("UV: " + uvIndex);
+            let $uvIndex = $("<p>");
+            $uvIndex.addClass("card-text uvIndex");
+            $("#showResults").append($uvIndex);
+            // UV index color coordinated warning and written level of concern
+            if (uvIndex > 0.01 & uvIndex < 3) {
+                //color turn green 
+                $uvIndex.addClass('success-color').text(`UV Index: Low Danger  + ${uvIndex}`);
+            } else if (uvIndex > 3 & uvIndex < 6) {
+                // color turns yellow 
+                $uvIndex.addClass('yellow accent-1').text(`UV Index: Moderate to High Danger  ${uvIndex}`);
+            } else if (uvIndex > 6 & uvIndex < 8) {
+                // color turns orange 
+                $uvIndex.addClass('warning-color').text(`UV Index: Moderate to High Danger  ${uvIndex}`);
+            } else if (uvIndex > 8 & uvIndex < 11) {
+                // color turns red 
+                $uvIndex.addClass('danger-color').text(`UV Index: Very High to Extreme Danger  ${uvIndex}`);
+            } else if (uvIndex > 11) {
+                // color turns purple 
+                $uvIndex.addClass('secondary-color').text(`UV Index: Very High to Extreme Danger  ${uvIndex}`);
+            }
+            return uvIndex;
+        });
+    }
+
+
+
+
+
+
+
     function show(data) {
         return  "<div id='summary'>" +"<h3 style= 'font-size: 20px; font-weight: bold;'>"+ data.name +"," + data.sys.country +"</h3>" +
                 "<h3><img src=http://openweathermap.org/img/wn/"+ data.weather[0].icon+".png> "+ data.weather[0].description  +"</h3>" + 
@@ -66,7 +112,8 @@ $(document).ready(function (){
                 "<h3><strong>Min. Temp</strong>: "+ Math.floor(data.main.temp_min)  +"&deg;F</h3>" +
                 "<h3><strong>Max. Temp</strong>: "+ Math.floor(data.main.temp_max)  +"&deg;F</h3>" +
                 "<h3><strong>Wind Speed</strong>: "+ Math.floor(data.wind.speed)  +" MPH" +"</h3>" +
-                "<h3><strong>Humidity</strong>: "+ data.main.humidity+"%" +"</h3>" + "</div>";
+                "<h3><strong>Humidity</strong>: "+ data.main.humidity+"%" +"</h3>" + "</div>" + 
+                "<h3><strong>UV Index</strong>: "+ uvIndexValue +"%" +"</h3>" + "</div>";
                 
     }
 

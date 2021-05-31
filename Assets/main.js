@@ -44,7 +44,11 @@ $(document).ready(function (){
                 datatype: "jsonp",
                 success: function(data){
                     let widget = show (data);
-
+                    const lon = data.coord.lon;
+                    const lat = data.coord.lat;
+                    var uvIndexValue = uvIndexFunction(lat, lon);
+                    console.log(uvIndexValue);
+                    $(".showUvResults").html(uvIndexValue)
                     $("#showResults").html(widget);
                     $("#search").val('')
                 }  
@@ -59,10 +63,7 @@ $(document).ready(function (){
         
     });
 
-    const lon = response.coord.lon;
-    const lat = response.coord.lat;
-    var uvIndexValue = uvIndexFunction(lat, lon);
-    console.log(uvIndexValue);
+    
     // UV index - states severity of the UV Index by color warning
 
     function uvIndexFunction(lat, lon) {
@@ -113,7 +114,7 @@ $(document).ready(function (){
                 "<h3><strong>Max. Temp</strong>: "+ Math.floor(data.main.temp_max)  +"&deg;F</h3>" +
                 "<h3><strong>Wind Speed</strong>: "+ Math.floor(data.wind.speed)  +" MPH" +"</h3>" +
                 "<h3><strong>Humidity</strong>: "+ data.main.humidity+"%" +"</h3>" + "</div>" + 
-                "<h3><strong>UV Index</strong>: "+ uvIndexValue +"%" +"</h3>" + "</div>";
+                "<h3><strong>UV Index</strong>: "+ data.current+"%" +"</h3>" + "</div>";
                 
     }
 

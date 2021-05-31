@@ -109,7 +109,7 @@ $(document).ready(function (){
 
     function showForecastData (data){
         
-        return  "<div class='fiveDayFinal'> <h3 class='dateFive'>" +  + "</h3>" +
+        return  "<div class='fiveDayFinal'> <h3 class='dateFive'>" + data.dt_text + "</h3>" +
                 "<h3><img src=http://openweathermap.org/img/wn/"+ data.weather[0].icon+".png id='img2'> "+ data.weather[0].description  +"</h3>" + 
                 "<h3><strong>Weather</strong>: "+ data.weather[0].main  +"</h3>" +
                 "<h3><strong>Temperature</strong>: "+ Math.floor(data.main.temp)  +"&deg;F</h3>" +

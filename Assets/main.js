@@ -128,23 +128,22 @@ $(document).ready(function (){
                 $("#showFiveDayForecast").html("");
                 console.log(data)
                 
-                for (i=0; i < data.list[i].dt_txt.indexOf("15:00:00")>1; i++) {
+                for (i=0; i<data.list.length; i++) {
                     
+                    if(data.list[i].dt_txt.indexOf("15:00:00")>1){
                     
-                        for (j=1; j<data.list.length; j+=8) {
 
-                            let weatherData= data.list[j]
+                            let weatherData= data.list[i]
                             let widgetFiveDay = showForecastData(weatherData);
-                            console.log(data.list[j]) //is each day's data for five day forcast.
+                            console.log(data.list[i]) //is each day's data for five day forcast.
                         
-                            console.log(data.list[j].dt_txt) //should be each of their date-strings.
+                            console.log(data.list[i].dt_txt) //should be each of their date-strings.
                             $("#showFiveDayForecast").append(widgetFiveDay);
                             
-                        }
 
-                        console.log(fiveDayForecast(city));
+                        
                     }
-                
+                }
                 
             }  
     })

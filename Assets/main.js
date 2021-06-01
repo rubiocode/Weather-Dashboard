@@ -123,7 +123,7 @@ $(document).ready(function (){
 
     function fiveDayForecast (city) {
         $.ajax ({
-            url: `http://api.openweathermap.org/data/2.5/forecast?q=${city}&units=imperial&appid=50f9be4cd5ddca3502184f3307bce83e`,
+            url: `https://api.openweathermap.org/data/2.5/forecast?q=${city}&units=imperial&appid=50f9be4cd5ddca3502184f3307bce83e`,
             type: "GET",
             datatype: "jsonp",
             success: function getForecast(data){

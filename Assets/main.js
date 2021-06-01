@@ -74,25 +74,27 @@ $(document).ready(function (){
         }).then(function (data) {
             let uvIndex = data.current.uvi;
             // console.log("UV: " + uvIndex);
-            let $uvIndex = $("<p>");
+            let $uvIndex = $("<button class= 'btn btnUvResults'>");
             $uvIndex.addClass("card-text uvIndex");
-            $("#showResults").append($uvIndex);
+            $(".showUvResults").append($uvIndex);
             // UV index color coordinated warning and written level of concern
             if (uvIndex > 0.01 & uvIndex < 3) {
                 //color turn green 
-                $uvIndex.addClass('success-color').css("background-color", "green").text(`UV Index: Low Danger  + ${uvIndex}`);
+                $uvIndex.addClass('success-color').css("background-color", "green").text(`Low Danger  + ${uvIndex}`);
             } else if (uvIndex > 3 & uvIndex < 6) {
                 // color turns yellow 
-                $uvIndex.addClass('yellow accent-1').css("background-color", "yellow").text(`UV Index: Moderate to High Danger  ${uvIndex}`);
+                $uvIndex.addClass('yellow accent-1').css("background-color", "yellow").text(`Moderate to High Danger  ${uvIndex}`);
             } else if (uvIndex > 6 & uvIndex < 8) {
                 // color turns orange 
-                $uvIndex.addClass('warning-color').css("background-color", "red").text(`UV Index: Moderate to High Danger  ${uvIndex}`);
+                $uvIndex.addClass('warning-color').css("background-color", "orange").text(`Moderate to High Danger  ${uvIndex}`);
             } else if (uvIndex > 8 & uvIndex < 11) {
                 // color turns red 
-                $uvIndex.addClass('danger-color').css("color", "red").text(`UV Index: Very High to Extreme Danger  ${uvIndex}`);
+                $uvIndex.addClass('danger-color').css("background-color", "red").text(`Very High to Extreme Danger  ${uvIndex}`);
             } else if (uvIndex > 11) {
                 // color turns purple 
                 $uvIndex.addClass('secondary-color').text(`UV Index: Very High to Extreme Danger  ${uvIndex}`);
+            } else {
+                $uvIndex.addClass('notAvailable-color').css("background-color", "blue").text(`N/A`);
             }
             return uvIndex;
         });
@@ -113,7 +115,7 @@ $(document).ready(function (){
                 "<h3><strong>Max. Temp</strong>: "+ Math.floor(data.main.temp_max)  +"&deg;F</h3>" +
                 "<h3><strong>Wind Speed</strong>: "+ Math.floor(data.wind.speed)  +" MPH" +"</h3>" +
                 "<h3><strong>Humidity</strong>: "+ data.main.humidity+"%" +"</h3>" + 
-                "<h3 id='showUvResults'><strong>UV Index</strong>: </h3>" + "</div>";
+                "<h3 class='showUvResults'><strong>UV-Index</strong>: </h3>" + "</div>";
                 
     }
 
@@ -130,7 +132,7 @@ $(document).ready(function (){
                 
                 for (i=0; i<data.list.length; i++) {
                     
-                    if(data.list[i].dt_txt.indexOf("15:00:00")>1){
+                    if(data.list[i].dt_txt.indexOf("15:00:00")>0){
                     
 
                             let weatherData= data.list[i]
@@ -154,7 +156,7 @@ $(document).ready(function (){
 
     function showForecastData (data){
         
-        return  "<div class='fiveDayFinal'> <h3 class='dateFive'>" + moment(data.dt_txt).add(1, 'day').format("LL")+ "</h3>" +
+        return  "<div class='fiveDayFinal'> <h3 class='dateFive'>" + moment(data.dt_txt).format("LL")+ "</h3>" +
                 "<h3><img src=http://openweathermap.org/img/wn/"+ data.weather[0].icon+".png id='img2'> "+ data.weather[0].description  +"</h3>" + 
                 "<h3><strong>Weather</strong>: "+ data.weather[0].main  +"</h3>" +
                 "<h3><strong>Temperature</strong>: "+ Math.floor(data.main.temp)  +"&deg;F</h3>" +

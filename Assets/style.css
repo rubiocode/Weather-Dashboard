@@ -30,16 +30,16 @@
 .five-day {
     margin: 1em;
     margin-top: 2em;
-  }
-  
-  #five-day-title {
+}
+
+#five-day-title {
     margin: 2rem;
     text-align: center;
     font-size: 1.5rem;
     font-weight: bold;
-  }
-  
-  .day-card {
+}
+
+.day-card {
     background: #38393a;
     border-radius: 6px;
     margin: 1em 0;
@@ -52,46 +52,44 @@
     flex-wrap:wrap;
     justify-content: space-around;
     line-height: 0.5rem;
-  }
+}
 
-  #searchedCity{
+#searchedCity{
     border: 1px solid;
-  padding: 10px;
-  box-shadow: 5px 10px 18px #888888;
-  }
+    padding: 10px;
+    box-shadow: 5px 10px 18px #888888;
+}
 
-  #summary{
-      background-color: white;
-      margin-left: 10rem;
-      margin-right:10rem;
-      text-align: center;
-      padding-bottom: 0.5rem;
-      padding-top: 1rem;
-      border: 1px solid;
-  padding: 10px;
-  box-shadow: 5px 10px 18px #888888;
-  }
+#summary{
+    background-color: white;
+    margin-left: 10rem;
+    margin-right:10rem;
+    text-align: center;
+    padding-bottom: 0.5rem;
+    padding-top: 1rem;
+    border: 1px solid;
+    padding: 10px;
+    box-shadow: 5px 10px 18px #888888;
+}
 
- img{
-     width: 10%;
- }     
+img{
+    width: 10%;
+}     
+
 #img2 {
-      width: 25%;
-  }
+    width: 25%;
+}
 
-  .inpValue {
-      color: black;
-  }
+.inpValue {
+    color: black;
+}
 
-  .prev-city{
-      display: block;
+.prev-city{
+    display: block;
 
-  }
+}
 
-  .myContainer {
-      margin: 2rem;
-  }
+.myContainer {
+    margin: 2rem;
+}
 
-  .myClass {
-      align-content: center;
-  }

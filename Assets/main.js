@@ -66,10 +66,10 @@ $(document).ready(function (){
     });
 
     
-    // UV index - states severity of the UV Index by color warning
+    // UV index function and values classified by color warning
 
     function uvIndexFunction(lat, lon) {
-        // event.preventDefault()
+
         var queryURLData = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&exlclude={part}&APPID=50f9be4cd5ddca3502184f3307bce83e`
         $.ajax({
             url: queryURLData,
@@ -80,7 +80,7 @@ $(document).ready(function (){
             let $uvIndex = $("<button class= 'btn btnUvResults'>");
             $uvIndex.addClass("card-text uvIndex");
             $(".showUvResults").append($uvIndex);
-            // UV index color coordinated warning and written level of concern
+            // UV index color coordinated warning
             if (uvIndex > 0.01 & uvIndex < 3) {
                 //color turn green 
                 $uvIndex.addClass('success-color').css("background-color", "green").text(`Low Danger  + ${uvIndex}`);
@@ -103,12 +103,7 @@ $(document).ready(function (){
         });
     }
 
-
-
-
-
-
-
+// current weather container summary function to print on HTML div
     function show(data) {
         return  "<div id='summary'>" +"<h3 style= 'font-size: 20px; font-weight: bold;'>"+ data.name +"," + data.sys.country +"</h3>" +
                 "<h3><img src=https://openweathermap.org/img/wn/"+ data.weather[0].icon+".png> "+ data.weather[0].description  +"</h3>" + 
@@ -140,9 +135,7 @@ $(document).ready(function (){
 
                             let weatherData= data.list[i]
                             let widgetFiveDay = showForecastData(weatherData);
-                            console.log(data.list[i]) //is each day's data for five day forcast.
-                        
-                            console.log(data.list[i].dt_txt) //should be each of their date-strings.
+                            
                             $("#showFiveDayForecast").append(widgetFiveDay);
                             
 
@@ -155,7 +148,7 @@ $(document).ready(function (){
 
 
 
-    
+// five day forecast summary function pushed to HTML
 
     function showForecastData (data){
         
@@ -166,9 +159,11 @@ $(document).ready(function (){
                 "<h3><strong>Wind Speed</strong>: "+ Math.floor(data.wind.speed)  +" MPH" +"</h3>" +
                 "<h3><strong>Humidity</strong>: "+ data.main.humidity+"%" +"</h3>"+ "</div>";
         };
-        //console.log()
+        
     }
     
+// clear search history upon clicking button using
+
 $(document).on("click",".prev-city", function(){
     let city = $(this).text();
     $(".inpSearch").val(city);

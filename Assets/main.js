@@ -1,18 +1,21 @@
 $(document).ready(function (){
     // getting prev search history from local storage upon page loading
-    
+    let keys = Object.keys(localStorage);
+    let i= keys.length;
     function cityAllStorage (){
         let cities = [];
-        keys = Object.keys(localStorage);
+        let keys = Object.keys(localStorage);
         i= keys.length;
         while (i--){
-            cities.push(JSON.parse(localStorage[keys[i]]));
+            values.push( localStorage.getItem(keys[i]));
+            
         }
         for (j=0; j<cities.length; j++) {
             $(".city-list").prepend("<button type='button' class='btn btn-light prev-city'>"+ cities[j]+ "</button>");
         }
         
     }
+    console.log(localStorage[keys[i]]);
     cityAllStorage();
 
     // removing stored cities upon click event
@@ -157,7 +160,7 @@ $(document).ready(function (){
     function showForecastData (data){
         
         return  "<div class='fiveDayFinal'> <h3 class='dateFive'>" + moment(data.dt_txt).format("LL")+ "</h3>" +
-                "<h3><img src=https://openweathermap.org/img/wn/"+ data.weather[0].icon+".png id='img2'> "+ data.weather[0].description  +"</h3>" + 
+                "<h3><img src=http://openweathermap.org/img/wn/"+ data.weather[0].icon+".png id='img2'> "+ data.weather[0].description  +"</h3>" + 
                 "<h3><strong>Weather</strong>: "+ data.weather[0].main  +"</h3>" +
                 "<h3><strong>Temperature</strong>: "+ Math.floor(data.main.temp)  +"&deg;F</h3>" +
                 "<h3><strong>Wind Speed</strong>: "+ Math.floor(data.wind.speed)  +" MPH" +"</h3>" +

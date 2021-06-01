@@ -2,7 +2,7 @@ $(document).ready(function (){
     // getting prev search history from local storage upon page loading
     let keys = Object.keys(localStorage);
     let i= keys.length;
-    function cityAllStorage (){
+    let storage = function cityAllStorage (){
         let cities = [];
         let keys = Object.keys(localStorage);
         i= keys.length;
@@ -16,7 +16,7 @@ $(document).ready(function (){
         
     }
     console.log(localStorage[keys[i]]);
-    cityAllStorage();
+    storage();
 
     // removing stored cities upon click event
 

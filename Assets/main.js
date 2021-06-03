@@ -1,22 +1,18 @@
 $(document).ready(function (){
     // getting prev search history from local storage upon page loading
-    let keys = Object.keys(localStorage);
-    let i= keys.length;
-    let storage = function cityAllStorage (){
-        let cities = [];
-        let keys = Object.keys(localStorage);
-        i= keys.length;
-        while (i--){
-            values.push( localStorage.getItem(keys[i]));
-            
-        }
-        for (j=0; j<cities.length; j++) {
-            $(".city-list").prepend("<button type='button' class='btn btn-light prev-city'>"+ cities[j]+ "</button>");
+    let localCities = JSON.parse(localStorage.getItem("cities")) || []
+    let cities = [];
+
+    function cityAllStorage (){
+
+        for (i=0; i<localCities.length; i++){
+
+            $(".city-list").prepend("<button type='button' class='btn btn-light prev-city'>"+ localCities[i]+ "</button>");
         }
         
     }
-    console.log(localStorage[keys[i]]);
-    storage();
+    console.log(localStorage.getItem("cities"));
+    cityAllStorage();
 
     // removing stored cities upon click event
 
@@ -39,7 +35,9 @@ $(document).ready(function (){
         event.preventDefault();
 
         let city= $("#search").val().trim();
-        cities = city.split(",")
+        cities = city.split(",");
+        localCities.push(city)
+        
         if (city != ''){
             $.ajax({
                 url: `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=imperial&APPID=50f9be4cd5ddca3502184f3307bce83e`,
@@ -55,8 +53,8 @@ $(document).ready(function (){
                     $("#search").val('')
                 }  
             })
-            localStorage.setItem("cities", JSON.stringify(cities));
-            $(".city-list").prepend("<button class='btn btn-light prev-city'>"+ cities + "</button>")
+            localStorage.setItem("cities", JSON.stringify(localCities));
+            $(".city-list").append("<button class='btn btn-light prev-city'>"+ cities + "</button>")
             fiveDayForecast (city);
         }else{
             $('#error').html (alert('Field cannot be empty'))
